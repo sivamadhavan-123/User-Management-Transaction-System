@@ -24,7 +24,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.mobile = mobile;
-        this.role = "USER";
+       // this.role = "USER";
     }
 
     public String getRole() {
