@@ -4,6 +4,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.DAO.UserDao;
 
 import java.io.IOException;
@@ -11,8 +13,13 @@ import java.io.PrintWriter;
 
 @WebFilter(urlPatterns = {"/signup","/user"})
 public class SignupFilter implements Filter {
+
+    private static final Logger logger= LogManager.getLogger(SignupFilter.class);
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        logger.trace("Entering SignupFilter.doFilter");
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
@@ -33,25 +40,30 @@ public class SignupFilter implements Filter {
 
         if (name == null || !name.matches(regex_name)) {
             out.println("Invalid name");
+            logger.warn("Invalid name");
             return;
         }
 
         if (mobile == null || !mobile.matches(regex_mobile)) {
             out.println("Invalid mobile number");
+            logger.warn("Invalid mobile number");
             return;
         }
 
         if (username == null || !username.matches(regex_username)) {
             out.println("Invalid username");
+            logger.warn("Invalid username");
             return;
         }
         if (password == null || !password.matches(regex_password)) {
             out.println("Invalid password");
+            logger.warn("Invalid password");
             return;
         }
 
         if (age < 1 || age > 100) {
             out.println("Invalid age");
+            logger.warn("Invalid age");
             return;
         }
 
@@ -61,17 +73,20 @@ public class SignupFilter implements Filter {
             String check= UserDao.existingUserCheck(username,mobile);
             if (check != null) {
                 out.println(check);
+                logger.info("User already exists");
             }
         }else{
             String check= UserDao.existingUser(username,mobile);
             if (check != null) {
                 out.println(check);
+                logger.info("Checks User already exists");
             }
         }
 
 
 
         chain.doFilter(request, response);
+        logger.trace("Exiting SignupFilter.doFilter");
 
 
     }
