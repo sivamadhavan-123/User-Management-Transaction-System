@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import org.example.util.DataBaseCon;
+import org.example.config.DataSourceProvider;
 import org.example.DTO.User;
 
 
@@ -17,7 +17,7 @@ public class UserDao {
         String sql = "select * from user limit ? offset ?";
         List<User> users = new ArrayList<>();
 
-        try (Connection connection = DataBaseCon.getDataSource().getConnection();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setInt(1, pageSize);
@@ -50,7 +50,7 @@ public class UserDao {
         String sql="insert into user (name,age,username,password,mobile,email)  values (?,?,?,?,?,?)";
 
         try(
-                Connection connection= DataBaseCon.getDataSource().getConnection();
+                Connection connection= DataSourceProvider.getDataSource().getConnection();
                 PreparedStatement statement=connection.prepareStatement(sql)
                 ) {
             statement.setString(1,user.getName());
@@ -72,7 +72,7 @@ public class UserDao {
     public static int totalRows() {
         String sql = "select count(*) from user";
         int totalRows = 0;
-        try (Connection connection = DataBaseCon.getDataSource().getConnection();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet rs = statement.executeQuery()
         ) {
@@ -95,7 +95,7 @@ public class UserDao {
         String sql = "update user set name=?,age=?,username=?,password=?,mobile=? ,email=? where username=?";
 
         try(
-                Connection connection = DataBaseCon.getDataSource().getConnection();
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)
 
                 ){
@@ -122,7 +122,7 @@ public class UserDao {
     public static String existingUserCheck(String username,String mobile) {
         String sql = "select 1 from user where username = ? or mobile = ?";
 
-        try (Connection connection = DataBaseCon.getDataSource().getConnection();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, username);
@@ -143,7 +143,7 @@ public class UserDao {
     public static String existingUser(String username, String mobile) {
         String sql = "select 1 from user where (username = ? or mobile = ?) and username !=?";
 
-        try (Connection connection = DataBaseCon.getDataSource().getConnection();
+        try (Connection connection = DataSourceProvider.getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, username);
@@ -164,16 +164,13 @@ public class UserDao {
 
     public static boolean deleteUser(String sessionUsername) {
 
-        try(Connection connection=DataBaseCon.getDataSource().getConnection();
+        try(Connection connection= DataSourceProvider.getDataSource().getConnection();
             PreparedStatement statement = connection.prepareStatement("delete from user where username=?")
         ) {
             statement.setString(1, sessionUsername);
 
             int rs = statement.executeUpdate();
-            if(rs>0){
-                return true;
-            }
-            return false;
+            return rs > 0;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -1,18 +1,20 @@
-package org.example.util;
+package org.example.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.example.util.Property;
 
-public class DataBaseCon {
+public class DataSourceProvider {
 
     private static final HikariDataSource data;
 
     static {
         HikariConfig config = new HikariConfig();
+
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/bluescope");
-        config.setUsername("root");
-        config.setPassword("siva@1431");
+        config.setJdbcUrl(Property.getProperty("db.url"));
+        config.setUsername(Property.getProperty("db.username"));
+        config.setPassword(Property.getProperty("db.password"));
 
 
         config.setMaximumPoolSize(5);

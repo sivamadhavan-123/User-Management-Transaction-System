@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import org.example.util.DataBaseCon;
+import org.example.config.DataSourceProvider;
 import org.example.DTO.LoginDto;
 
 import java.sql.Connection;
@@ -12,7 +12,7 @@ public class LoginDao {
     public static LoginDto findByUsername(String username){
         String sql = "select  password,role,name,username,email from user where username=? "+"union all "+"select  password,role,name,username,email from admin where username=?";
         try (
-                Connection connection = DataBaseCon.getDataSource().getConnection();
+                Connection connection = DataSourceProvider.getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             statement.setString(1, username);
