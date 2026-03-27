@@ -164,6 +164,7 @@ public class UserDao {
 
     public static boolean deleteUser(String sessionUsername) {
 
+        String sql = "delete from user where username=?";
         try(Connection connection= DataSourceProvider.getDataSource().getConnection();
             PreparedStatement statement = connection.prepareStatement("delete from user where username=?")
         ) {
@@ -173,6 +174,21 @@ public class UserDao {
             return rs > 0;
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean deposite(int amount, String username) throws SQLException {
+        String sql ="insert into amount (username,amount,insert_date) values (?,?,current_date)";
+        try(Connection connection=DataSourceProvider.getDataSource().getConnection();
+        PreparedStatement statement=connection.prepareStatement(sql)
+        ){
+statement.setString(1,username);
+statement.setInt(2,amount);
+int rs = statement.executeUpdate();
+return rs>0;
+
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
