@@ -127,49 +127,55 @@ The system ensures:
 ---
 
 ## 🧱 Project Structure
+```
 User_Management_Transaction_System
 │
 ├── pom.xml
 ├── src/main/java
-│ └── com.project
-│ ├── config
-│ │ ├── AppStartupListener.java
-│ │ ├── DataSourceProvider.java
-│ │ ├── LiquibaseRunner.java
-│ │ └── QuartzScheduler.java
-│ │
-│ ├── controller
-│ │ ├── AdminServlet.java
-│ │ ├── SignUp.java
-│ │ ├── SignIn.java
-│ │ ├── Logout.java
-│ │ └── UserServlet.java
-│ │
-│ ├── dao
-│ │ ├── UserDao.java
-│ │ └── LoginDao.java
-│ │
-│ ├── dto
-│ │ ├── User.java
-│ │ ├── Admin.java
-│ │ └── LoginDto.java
-│ │
-│ ├── filter
-│ │ ├── SignupFilter.java
-│ │ └── SigninFilter.java
-│ │
-│ ├── service
-│ │ └── ServiceLayer.java
-│ │
-│ └── util
-│ ├── EmailSMTP.java
-│ └── Property.java
+│   └── com.project
+│       ├── config
+│       │   ├── AppStartupListener.java
+│       │   ├── DataSourceProvider.java
+│       │   ├── LiquibaseRunner.java
+│       │   └── QuartzScheduler.java
+│       │
+│       ├── controller
+│       │   ├── AdminServlet.java
+│       │   ├── SignUp.java
+│       │   ├── SignIn.java
+│       │   ├── Logout.java
+│       │   └── UserServlet.java
+│       │
+│       ├── dao
+│       │   ├── UserDao.java
+│       │   └── LoginDao.java
+│       │
+│       ├── dto
+│       │   ├── User.java
+│       │   ├── Admin.java
+│       │   └── LoginDto.java
+│       │
+│       ├── filter
+│       │   ├── SignupFilter.java
+│       │   └── SigninFilter.java
+│       │
+│       ├── service
+│       │   └── ServiceLayer.java
+│       │
+│       └── util
+│           ├── EmailSMTP.java
+│           └── Property.java
 │
-└── src/main/resources
-├── application.properties
-├── changelog.xml
-└── log4j2.xml
-
+├── src/main/resources
+│   ├── application.properties
+│   ├── changelog.xml
+│   └── log4j2.xml
+│
+└── src/main/webapp
+    ├── WEB-INF
+        └── web.xml
+    
+```
 
 ---
 
