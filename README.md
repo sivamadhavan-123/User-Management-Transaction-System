@@ -157,13 +157,3 @@ Run Liquibase migrations
 Deploy on server (Tomcat)
 Start application
 
-📌 Endpoints Summary
-
-Endpoint	Method	      Description
-/signup	         POST	      Register new user
-/signin	         POST         Login user
-/logout	         POST	      Logout user
-/admin/alluser	 GET	      Get all users (Admin only)
-/user/update	 POST	      Update user details
-/user/delete	 DELETE	      Delete user
-/deposit	 POST	      Deposit money
