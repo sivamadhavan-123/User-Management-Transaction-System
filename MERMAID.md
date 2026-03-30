@@ -1,12 +1,15 @@
-# User Management & Transaction System - Flow Diagrams
+# User Management & Transaction System - Mermaid Diagrams
 
-## 1. Overall System Flow
+---
+
+##  1. Overall System Flow
+
 ```mermaid
 flowchart TD
 
     A[User Request] --> B{Endpoint Type}
 
-    %% Authentication
+    %% Signup
     B -->|/signup| C[Signup Filter]
     C --> D{Valid Input?}
     D -->|No| E[Reject Request]
@@ -28,14 +31,14 @@ flowchart TD
     P -->|Admin| Q[Send Email Notification]
     P -->|User| R[Login Success]
 
-    %% Admin Flow
+    %% Admin
     B -->|/admin/alluser| S[Auth Check]
     S --> T{Is Admin?}
     T -->|No| E
     T -->|Yes| U[Fetch Users with Pagination]
     U --> I
 
-    %% User Update
+    %% Update
     B -->|/user/update| V[Auth Check]
     V --> W{Valid User?}
     W -->|No| E
@@ -43,7 +46,7 @@ flowchart TD
     X --> Y[Update UserDao]
     Y --> I
 
-    %% Delete User
+    %% Delete
     B -->|/user/delete| Z[Auth Check]
     Z --> AA{Valid User?}
     AA -->|No| E
@@ -66,13 +69,14 @@ flowchart TD
     AI[Quartz Scheduler] --> AJ[Monthly Trigger]
     AJ --> AK[Calculate 0.58% Interest]
     AK --> I
-
+```
 
 ---
-## 2. Overall System Flow
-```mermaid
 
-    flowchart LR
+##  2. Layered Architecture Flow
+
+```mermaid
+flowchart LR
 
     A[Client Request] --> B[Servlet Controller]
     B --> C[Filter Layer]
@@ -80,6 +84,42 @@ flowchart TD
     D --> E[DAO Layer]
     E --> F[(Database)]
 
-    F --> E --> D --> B --> G[Response to Client]
+    F --> E --> D --> B --> G[Response]
+```
 
+---
 
+##  3. Signup Detailed Flow
+
+```mermaid
+flowchart TD
+
+    A[/signup Request/] --> B[SignupFilter]
+    B --> C{Regex Valid?}
+    C -->|No| D[Reject]
+    C -->|Yes| E{Username Exists?}
+    E -->|Yes| D
+    E -->|No| F[SignUp Servlet]
+    F --> G[Hash Password]
+    G --> H[UserDao]
+    H --> I[(DB Insert)]
+    I --> J[Success Response]
+```
+
+---
+
+##  4. Scheduler Flow (Quartz)
+
+```mermaid
+flowchart TD
+
+    A[Quartz Scheduler Start] --> B[Monthly Trigger]
+    B --> C[Fetch All Users]
+    C --> D[Calculate Interest 0.58%]
+    D --> E[Update Balance]
+    E --> F[(Database)]
+```
+
+---
+
+---
