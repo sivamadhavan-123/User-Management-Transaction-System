@@ -1,4 +1,4 @@
-# 📌 User Management & Transaction System (Java Servlet Project)
+#  User Management & Transaction System (Java Servlet Project)
 
 ## 📖 Overview
 
@@ -13,7 +13,7 @@ The system ensures:
 
 ---
 
-## 🚀 Features
+## Features
 
 ### 🔐 Authentication
 - User Signup (`/signup`)  
@@ -34,7 +34,7 @@ The system ensures:
 
 ---
 
-## 🏗️ Project Flow
+##  Project Flow
 
 ### 📝 Signup Flow
 1. User sends request to `/signup`  
@@ -61,7 +61,7 @@ The system ensures:
 
 ---
 
-### 👑 Admin Flow
+###  Admin Flow
 - **Endpoint:** `/admin/alluser`  
 
 **Checks:**
@@ -115,7 +115,7 @@ The system ensures:
 
 ---
 
-### 🚪 Logout Flow
+###  Logout Flow
 - **Endpoint:** `/logout`  
 
 **Checks:**
@@ -126,7 +126,7 @@ The system ensures:
 
 ---
 
-## 🧱 Project Structure
+##  Project Structure
 ```
 User_Management_Transaction_System
 │
@@ -212,7 +212,7 @@ User_Management_Transaction_System
 
 ---
 
-## 📌 Endpoints Summary
+##  Endpoints Summary
 
 | Endpoint         | Method | Description                     |
 |----------------|--------|---------------------------------|
