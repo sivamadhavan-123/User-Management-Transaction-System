@@ -66,3 +66,20 @@ flowchart TD
     AI[Quartz Scheduler] --> AJ[Monthly Trigger]
     AJ --> AK[Calculate 0.58% Interest]
     AK --> I
+
+
+---
+## 2. Overall System Flow
+```mermaid
+
+    flowchart LR
+
+    A[Client Request] --> B[Servlet Controller]
+    B --> C[Filter Layer]
+    C --> D[Service Layer]
+    D --> E[DAO Layer]
+    E --> F[(Database)]
+
+    F --> E --> D --> B --> G[Response to Client]
+
+
