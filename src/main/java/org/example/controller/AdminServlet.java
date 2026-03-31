@@ -1,13 +1,13 @@
-package org.example.Controller;
 
+package org.example.controller;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.example.DAO.UserDao;
-import org.example.DTO.User;
-import org.example.Service.ServiceLayer;
+import org.example.dao.UserDao;
+import org.example.dto.User;
+import org.example.service.ServiceLayer;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -22,7 +22,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
 
         HttpSession session = req.getSession(false);
-        PrintWriter out = resp.getWriter();
+
         int totalRows= UserDao.totalRows();
 
 
@@ -51,7 +51,7 @@ public class AdminServlet extends HttpServlet {
             pageNumber = totalPage;
         }
 
-
+        try(PrintWriter out = resp.getWriter()){
         if (session != null && session.getAttribute("role").equals("ADMIN")) {
 
             List<User> user = ServiceLayer.pagenation(pageSize,pageNumber);
@@ -83,7 +83,7 @@ public class AdminServlet extends HttpServlet {
         } else {
             out.println("You are not logged in ");
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        }
+        }}
 
     }
 }

@@ -1,7 +1,7 @@
-package org.example.DAO;
+package org.example.dao;
 
 import org.example.config.DataSourceProvider;
-import org.example.DTO.User;
+import org.example.dto.User;
 
 
 import java.sql.*;

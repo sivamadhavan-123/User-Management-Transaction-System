@@ -1,4 +1,4 @@
-package org.example.Filters;
+package org.example.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.DAO.UserDao;
+import org.example.dao.UserDao;
 
 import java.io.IOException;
 import java.io.PrintWriter;

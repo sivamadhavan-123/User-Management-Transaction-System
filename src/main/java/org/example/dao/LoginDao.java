@@ -1,7 +1,7 @@
-package org.example.DAO;
+package org.example.dao;
 
 import org.example.config.DataSourceProvider;
-import org.example.DTO.LoginDto;
+import org.example.dto.LoginDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

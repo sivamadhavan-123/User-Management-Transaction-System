@@ -1,5 +1,4 @@
-package org.example.Controller;
-import jakarta.servlet.ServletException;
+package org.example.controller;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,8 +6,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.DAO.UserDao;
-import org.example.DTO.User;
+import org.example.dao.UserDao;
+import org.example.dto.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;

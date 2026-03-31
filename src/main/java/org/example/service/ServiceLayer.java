@@ -1,8 +1,8 @@
-package org.example.Service;
-import org.example.DAO.LoginDao;
-import org.example.DAO.UserDao;
-import org.example.DTO.LoginDto;
-import org.example.DTO.User;
+package org.example.service;
+import org.example.dao.LoginDao;
+import org.example.dao.UserDao;
+import org.example.dto.LoginDto;
+import org.example.dto.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;

@@ -1,18 +1,15 @@
-package org.example.DTO;
+package org.example.dto;
 
-public class Admin {
-    private int id;
+public class LoginDto {
+
     private String name;
     private String username;
     private String password;
     private String role;
+    private String email;
 
-    public int getId() {
-        return id;
-    }
+    public LoginDto() {
 
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -47,11 +44,20 @@ public class Admin {
         this.role = role;
     }
 
-    public Admin(int id, String name, String username, String password, String role) {
-        this.id = id;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public LoginDto(String name, String username, String password, String role, String email) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.role = role;
     }
+
+
 }

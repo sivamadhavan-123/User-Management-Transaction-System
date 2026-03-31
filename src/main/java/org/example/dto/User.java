@@ -1,4 +1,4 @@
-package org.example.DTO;
+package org.example.dto;
 
 public class User {
     private int id;
